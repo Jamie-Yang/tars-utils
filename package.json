@@ -1,0 +1,36 @@
+{
+  "name": "do",
+  "version": "1.0.0",
+  "description": "JavaScript's functional programming helper library.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress --config ./build/webpack.config.js",
+    "test": "rollup -w -c ./build/rollup.config.js",
+    "build": "rollup -c ./build/rollup.config.js",
+    "lint": "npm run eslint && npm run prettier",
+    "eslint": "eslint --ext .js,.ts .",
+    "eslint:fix": "eslint --ext .js,.ts --fix .",
+    "prettier": "prettier -l \"./**/*.{js,json}\"",
+    "prettier:fix": "prettier --write -l \"./**/*.{js,json}\""
+  },
+  "author": "Jamie Yang",
+  "license": "ISC",
+  "repository": "https://github.com/Jamie-Yang/do.git",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "babel-eslint": "^10.0.3",
+    "core-js": "^3.6.2",
+    "eslint": "^6.8.0",
+    "eslint-config-alloy": "^3.5.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.19.1",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^5.1.3",
+    "webpack": "^4.41.5",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

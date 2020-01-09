@@ -1,0 +1,7 @@
+/.vscode
+/dist
+/docs
+/node_modules
+.eslintrc.js
+package.json
+package-lock.json
