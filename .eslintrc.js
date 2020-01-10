@@ -1,7 +1,10 @@
 module.exports = {
+  plugins: ['jsdoc'],
   extends: [
     // 规则继承 https://github.com/AlloyTeam/eslint-config-alloy
-    'alloy'
+    'alloy',
+    'plugin:jsdoc/recommended',
+    'prettier'
   ],
   globals: {
     // 全局变量 window 不允许被重新赋值
@@ -9,6 +12,8 @@ module.exports = {
     define: true
   },
   rules: {
+    'prettier/prettier': 'error',
+
     // 强制使用一致的缩进
     indent: [
       'error',
