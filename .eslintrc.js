@@ -1,15 +1,9 @@
 module.exports = {
-  plugins: ['jsdoc'],
-  extends: [
-    // 规则继承 https://github.com/AlloyTeam/eslint-config-alloy
-    'alloy',
-    'plugin:jsdoc/recommended',
-    'prettier'
-  ],
+  plugins: ['jsdoc', 'prettier'],
+  extends: ['alloy', 'plugin:jsdoc/recommended', 'prettier'],
   globals: {
-    // 全局变量 window 不允许被重新赋值
     window: false,
-    define: true
+    define: true,
   },
   rules: {
     'prettier/prettier': 'error',
@@ -22,8 +16,8 @@ module.exports = {
         // case 子句将相对于 switch 语句缩进 2 个空格
         SwitchCase: 1,
         // 三元表达式内的三元表达式不能有缩进
-        flatTernaryExpressions: true
-      }
+        flatTernaryExpressions: true,
+      },
     ],
     // 不强制使用一致的分号
     semi: 0,
@@ -31,8 +25,8 @@ module.exports = {
     complexity: [
       'error',
       {
-        max: 30
-      }
-    ]
-  }
+        max: 30,
+      },
+    ],
+  },
 };

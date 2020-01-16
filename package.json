@@ -1,8 +1,8 @@
 {
-  "name": "do",
-  "version": "1.0.0",
+  "name": "tars-utils",
+  "version": "0.0.1",
   "description": "JavaScript's functional programming helper library.",
-  "main": "index.js",
+  "main": "dist/tars-utils.min.js",
   "scripts": {
     "start": "webpack-dev-server --progress --config ./build/webpack.config.js",
     "test": "rollup -w -c ./build/rollup.config.js",
@@ -15,7 +15,7 @@
   },
   "author": "Jamie Yang",
   "license": "ISC",
-  "repository": "https://github.com/Jamie-Yang/do.git",
+  "repository": "https://github.com/Jamie-Yang/tars-utils.git",
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
@@ -34,6 +34,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.1.3",
     "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   }
 }

@@ -1,9 +1,9 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    index: "./test/index"
+    index: './test/index',
   },
   module: {
     rules: [
@@ -11,20 +11,20 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "css-loader"
-          }
-        ]
-      }
-    ]
+            loader: 'css-loader',
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./test/index.html"
-    })
+      template: './test/index.html',
+    }),
   ],
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
-    host: "0.0.0.0",
-    disableHostCheck: true
-  }
+    host: '0.0.0.0',
+    disableHostCheck: true,
+  },
 };

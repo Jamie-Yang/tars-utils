@@ -13,8 +13,8 @@ module.exports = {
   quoteProps: 'as-needed',
   // jsx 不使用单引号，而使用双引号
   jsxSingleQuote: false,
-  // 末尾不需要逗号
-  trailingComma: 'none',
+  // 末尾添加逗号 按es5语法
+  trailingComma: 'es5',
   // 大括号内的首尾需要空格
   bracketSpacing: true,
   // jsx 标签的反尖括号需要换行
@@ -33,5 +33,5 @@ module.exports = {
   // 根据显示样式决定 html 要不要折行
   htmlWhitespaceSensitivity: 'css',
   // 换行符使用 lf
-  endOfLine: 'lf'
+  endOfLine: 'lf',
 };
