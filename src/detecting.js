@@ -62,7 +62,7 @@ const isNotchIPhone = () => {
   const screens = [
     { dpr: 3, width: 375, height: 812 },
     { dpr: 3, width: 414, height: 896 },
-    { dpr: 2, width: 414, height: 896 }
+    { dpr: 2, width: 414, height: 896 },
   ];
   if (typeof window !== 'undefined' && window) {
     const { devicePixelRatio, screen } = window;
