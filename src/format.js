@@ -5,7 +5,7 @@
  * @param {string} format 格式描述：YYYY-MM-DD HH:mm:ss.SSS 或 d天 HH:mm:ss.SSS
  * @returns {string} 2020-01-01 12:00:00.000 或 1天 12:00:00.00
  */
-function formatTime(time = {}, format) {
+const formatTime = (time = {}, format) => {
   const defaults = {
     year: 0,
     month: 0,
@@ -14,7 +14,7 @@ function formatTime(time = {}, format) {
     hour: 0,
     minute: 0,
     second: 0,
-    millisecond: 0
+    millisecond: 0,
   };
 
   const t = { ...defaults, ...time };
@@ -27,7 +27,7 @@ function formatTime(time = {}, format) {
     'm+': t.minute,
     's+': t.second,
     'S+': t.millisecond,
-    d: t.day
+    d: t.day,
   };
 
   let result = format;
@@ -45,7 +45,7 @@ function formatTime(time = {}, format) {
   }
 
   return result;
-}
+};
 
 /**
  * 时间格式化
@@ -54,7 +54,7 @@ function formatTime(time = {}, format) {
  * @param {string} format 格式描述：YYYY-MM-DD HH:mm:ss.SSS
  * @returns {string} 格式化结果：2020-01-01 12:00:00.000
  */
-function formatDate(date, format) {
+const formatDate = (date, format) => {
   const time = {
     year: date.getFullYear(),
     month: date.getMonth() + 1,
@@ -62,11 +62,11 @@ function formatDate(date, format) {
     hour: date.getHours(),
     minute: date.getMinutes(),
     second: date.getSeconds(),
-    millisecond: date.getMilliseconds()
+    millisecond: date.getMilliseconds(),
   };
 
   return formatTime(time, format);
-}
+};
 
 /**
  * 剩余时间格式化（不支持年月，因其周期不固定）
@@ -75,7 +75,7 @@ function formatDate(date, format) {
  * @param {string} format 格式描述：d天 HH:mm:ss.SSS
  * @returns {string} 格式化结果：1天 12:00:00.00
  */
-function formateRemainTime(remain, format) {
+const formateRemainTime = (remain, format) => {
   const SECOND = 1000;
   const MINUTE = 60 * SECOND;
   const HOUR = 60 * MINUTE;
@@ -86,11 +86,11 @@ function formateRemainTime(remain, format) {
     hour: Math.floor((remain % DAY) / HOUR),
     minute: Math.floor((remain % HOUR) / MINUTE),
     second: Math.floor((remain % MINUTE) / SECOND),
-    millisecond: Math.floor(remain % SECOND)
+    millisecond: Math.floor(remain % SECOND),
   };
 
   return formatTime(time, format);
-}
+};
 
 /**
  * 手机号格式化，格式为344
@@ -99,7 +99,7 @@ function formateRemainTime(remain, format) {
  * @param {string} separator 分隔符，默认空格
  * @returns {string} 格式化结果
  */
-function formatTel(tel, separator = ' ') {
+const formatTel = (tel, separator = ' ') => {
   const str = tel.toString().replace(/\s/g, '');
 
   if (/(\d{3})(\d{4})(\d{4})/.test(str)) {
@@ -107,7 +107,7 @@ function formatTel(tel, separator = ' ') {
   }
 
   return tel;
-}
+};
 
 /**
  * 银行卡格式化，格式为四位分割
@@ -116,18 +116,18 @@ function formatTel(tel, separator = ' ') {
  * @param {string} separator 分隔符，默认空格
  * @returns {string} 格式化结果
  */
-function formatBankCard(bankCard, separator = ' ') {
+const formatBankCard = (bankCard, separator = ' ') => {
   const str = bankCard.toString().replace(/\s/g, '');
   return str.replace(/(\d{4})(?=\d)/g, `$1${separator}`);
-}
+};
 
 /**
- * 金额格式化 2333 -> 2,333.00
+ * 金额格式化，保留两位小数、千分位格式化 2333 -> 2,333.00
  *
  * @param {number} amount 金额
  * @returns {string} 格式化结果
  */
-function formatAmount(amount) {
+const formatAmount = (amount) => {
   const num = Number(amount);
 
   if (isNaN(num)) {
@@ -135,6 +135,6 @@ function formatAmount(amount) {
   }
 
   return num.toFixed(2).replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
-}
+};
 
 export { formatDate, formateRemainTime, formatTel, formatBankCard, formatAmount };
