@@ -1,16 +1,4 @@
 /**
- * 计算base64图片大小
- *
- * @param {string} base64url 图片base64
- * @returns {number} 返回KB数字
- */
-const computeImageSize = (base64url) => {
-  let strLen = base64url.length;
-  let fileSize = strLen - (strLen / 8) * 2;
-  return parseInt(fileSize / 1024, 10);
-};
-
-/**
  * 优化图片尺寸和文件大小
  * 不支持Gif格式
  *
@@ -21,11 +9,11 @@ const computeImageSize = (base64url) => {
  * @param {string} [options.mimeType] 生成图片的MIME类型
  * @returns {Promise<Blob>} 生成图片 Blob对象
  */
-const optimizeImage = (image, quality = 0.9, { maxWidth = 750, mimeType } = {}) => {
+export default function optimizeImage(image, quality = 0.9, { maxWidth = 750, mimeType } = {}) {
   return new Promise((resolve, reject) => {
     if (image instanceof File) {
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         toBlob(this.result);
       };
       reader.readAsDataURL(image);
@@ -50,7 +38,7 @@ const optimizeImage = (image, quality = 0.9, { maxWidth = 750, mimeType } = {}) 
 
         const virtualImage = new Image();
         virtualImage.src = data;
-        virtualImage.onload = function() {
+        virtualImage.onload = function () {
           let width = this.naturalWidth;
           let height = this.naturalHeight;
           if (width > maxWidth) {
@@ -75,6 +63,4 @@ const optimizeImage = (image, quality = 0.9, { maxWidth = 750, mimeType } = {}) 
       }
     }
   });
-};
-
-export { computeImageSize, optimizeImage };
+}

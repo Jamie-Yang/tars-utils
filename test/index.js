@@ -1,10 +1,5 @@
-import tars from '../dist/tars-utils.min.js';
+import tars from '../dist/tars-utils.esm';
 
-console.log(tars.ua());
+// console.log(isAndroid());
 
-console.log(
-  tars.stringifyQueryString({
-    test: 1,
-    arr: [1, 2],
-  })
-);
+console.log(tars.isAndroid());

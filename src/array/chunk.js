@@ -12,4 +12,4 @@ const chunk = (arr, size = 1) =>
     arr.slice(i * size, i * size + size)
   );
 
-export const array = { chunk };
+export default chunk;
