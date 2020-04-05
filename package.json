@@ -13,7 +13,6 @@
     "eslint:fix": "eslint --ext .js,.ts --fix .",
     "prettier": "prettier -l \"./**/*.{js,json}\"",
     "prettier:fix": "prettier --write -l \"./**/*.{js,json}\"",
-    "webpack": "webpack --config ./build/webpack.config.js",
     "prepare-publish": "rm -rf dist_npm && mkdir dist_npm && cp package.json README.md ./dist_npm && npm run build"
   },
   "author": "Jamie Yang",
@@ -40,9 +39,7 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
-  "dependencies": {
-    "bbo": "^1.1.15"
-  },
+  "dependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
