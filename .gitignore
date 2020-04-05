@@ -11,4 +11,5 @@ node_modules/
 npm-debug.log
 .npmrc
 package-lock.json
-dist/
+dist_npm/
+

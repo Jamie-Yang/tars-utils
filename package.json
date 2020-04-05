@@ -2,8 +2,8 @@
   "name": "tars-utils",
   "version": "0.0.1",
   "description": "JavaScript's functional programming helper library.",
-  "main": "dist/tars-utils.min.js",
-  "module": "dist/tars-utils.esm.js",
+  "main": "tars-utils.js",
+  "module": "tars-utils.esm.js",
   "scripts": {
     "start": "webpack-dev-server --progress --config ./build/webpack.config.js",
     "test": "rollup -w -c ./build/rollup.config.js",
@@ -13,7 +13,8 @@
     "eslint:fix": "eslint --ext .js,.ts --fix .",
     "prettier": "prettier -l \"./**/*.{js,json}\"",
     "prettier:fix": "prettier --write -l \"./**/*.{js,json}\"",
-    "webpack": "webpack --config ./build/webpack.config.js"
+    "webpack": "webpack --config ./build/webpack.config.js",
+    "prepare-publish": "rm -rf dist_npm && mkdir dist_npm && cp package.json README.md ./dist_npm && npm run build"
   },
   "author": "Jamie Yang",
   "license": "ISC",

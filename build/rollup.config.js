@@ -17,14 +17,23 @@ export default [
   {
     input: 'src/index.js',
     output: [
+      // es module
       {
         banner,
         exports: 'named',
-        file: `dist/${name}.esm.js`,
+        file: `dist_npm/${name}.esm.js`,
         format: 'esm',
         name: 'tars',
-        chunkFileNames: 'internal/[name].js',
       },
+      // commonjs
+      {
+        banner,
+        file: `dist_npm/${name}.js`,
+        exports: 'named',
+        format: 'cjs',
+        name: 'tars',
+      },
+      // umd
       {
         banner,
         file: `dist/${name}.js`,
@@ -50,7 +59,7 @@ export default [
         output: {
           comments(node, comment) {
             if (comment.type === 'comment2') {
-              return /tars.+v/i.test(comment.value);
+              return /tars.+/i.test(comment.value);
             }
           },
         },
