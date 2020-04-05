@@ -1,6 +1,6 @@
 {
   "name": "tars-utils",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "JavaScript's functional programming helper library.",
   "main": "tars-utils.js",
   "module": "tars-utils.esm.js",
