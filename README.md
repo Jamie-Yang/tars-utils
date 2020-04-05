@@ -2,7 +2,7 @@
 
 > TARS: 取自电影《星际穿越》中智能机器人的角色名。
 
-tars-utils 是一个前端常用工具方法库，整理了在前端项目里高频使用的 utils 方法，所有方法均以简洁已读的 es2015+ 语法实现。
+tars-utils 是一个前端常用工具方法库，整理了在前端项目里高频使用的 utils 方法，所有方法均以简洁易读的 es2015+ 语法实现。
 
 欢迎直接引用本库，也欢迎查看并选用本项目里个别方法的实现。
 
@@ -54,8 +54,8 @@ import { randomColor } from 'tars';
 
 ## 下载
 
-- [tars-utils.js](./dist/tars-utils.js)
-- [tars-utils.min.js](./dist/tars-utils.min.js) , [source map](./dist/tars-utils.min.js.map)
+- [tars-utils.js](https://raw.githubusercontent.com/Jamie-Yang/tars-utils//master/dist/tars-utils.js)
+- [tars-utils.min.js](https://raw.githubusercontent.com/Jamie-Yang/tars-utils//master/dist/tars-utils.min.js) , [source map](https://raw.githubusercontent.com/Jamie-Yang/tars-utils//master/dist/tars-utils.min.js.map)
 
 ## 开源协议
 
