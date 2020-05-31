@@ -7,6 +7,6 @@
  * @returns {number} 随机数
  */
 export default function randomA2B(a, b, int) {
-  let result = Math.random() * (a - b) + a;
+  let result = Math.random() * (b - a) + a;
   return int ? Math.floor(result) : result;
 }
