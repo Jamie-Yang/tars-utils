@@ -495,7 +495,7 @@
       millisecond: 0
     };
 
-    var t = _objectSpread2({}, defaults, {}, time);
+    var t = _objectSpread2(_objectSpread2({}, defaults), time);
 
     var map = {
       'Y+': t.year,
@@ -1189,7 +1189,7 @@
    * @returns {number} 随机数
    */
   function randomA2B(a, b, _int) {
-    var result = Math.random() * (a - b) + a;
+    var result = Math.random() * (b - a) + a;
     return _int ? Math.floor(result) : result;
   }
 
@@ -1307,7 +1307,26 @@
   }
 
   /**
-   * 获取URL hash 参数对象
+   * 获得 URL 哈希字符串
+   *
+   * @param {string} url 链接
+   * @returns {string} 哈希字符串
+   */
+  function getHash(url) {
+    var hash = '';
+    var hashStart = url.indexOf('#');
+
+    if (hashStart !== -1) {
+      hash = url.slice(hashStart);
+    }
+
+    return hash;
+  }
+  var a = 'https://www.baidu.com/path?a=1&b=2#/?c=3';
+  console.log(getHash(a));
+
+  /**
+   * 获取 URL hash 参数对象
    *
    * @param {string} [url] 链接
    * @returns {object} 参数对象
@@ -1315,7 +1334,7 @@
 
   function getHashParams() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
-    return getParams(new URL(url).hash);
+    return getParams(getHash(url));
   }
 
   /**
@@ -1332,6 +1351,42 @@
   }
 
   /**
+   * 去除 URL 哈希字符串
+   *
+   * @param {string} url 链接
+   * @returns {string} 去除哈希后的链接
+   */
+  function removeHash(url) {
+    var res;
+    var hashStart = url.indexOf('#');
+
+    if (hashStart !== -1) {
+      res = url.slice(0, hashStart);
+    }
+
+    return res;
+  }
+
+  /**
+   * 获得 URL 查询字符串
+   *
+   * @param {string} url 链接
+   * @returns {string} 查询参数字符串
+   */
+
+  function getSearch(url) {
+    var _url = removeHash(url);
+
+    var queryStart = _url.indexOf('?');
+
+    if (queryStart === -1) {
+      return '';
+    }
+
+    return _url.slice(queryStart + 1);
+  }
+
+  /**
    * 获取URL search 参数对象
    *
    * @param {string} [url] 链接
@@ -1340,7 +1395,7 @@
 
   function getSearchParams() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
-    return getParams(new URL(url).search);
+    return getParams(getSearch(url));
   }
 
   /**

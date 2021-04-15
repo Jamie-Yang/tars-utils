@@ -5,7 +5,7 @@
   "main": "tars-utils.js",
   "module": "tars-utils.esm.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --config ./build/webpack.config.js",
+    "dev": "webpack-dev-server --progress --config ./build/webpack.config.js",
     "test": "rollup -w -c ./build/rollup.config.js",
     "build": "rollup -c ./build/rollup.config.js",
     "lint": "npm run eslint && npm run prettier",
