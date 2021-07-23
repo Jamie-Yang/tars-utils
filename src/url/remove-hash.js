@@ -10,6 +10,5 @@ export default function removeHash(url) {
   if (hashStart !== -1) {
     res = url.slice(0, hashStart);
   }
-
   return res;
 }

@@ -1,4 +1,4 @@
-import getParams from './get-params';
+import parseQuery from './parse-query';
 import getHash from './get-hash';
 
 /**
@@ -8,5 +8,5 @@ import getHash from './get-hash';
  * @returns {object} 参数对象
  */
 export default function getHashParams(url = window.location.href) {
-  return getParams(getHash(url));
+  return parseQuery(getHash(url));
 }

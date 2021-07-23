@@ -12,6 +12,5 @@ export default function getSearch(url) {
   if (queryStart === -1) {
     return '';
   }
-
   return _url.slice(queryStart + 1);
 }

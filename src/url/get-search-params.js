@@ -1,4 +1,4 @@
-import getParams from './get-params';
+import parseQuery from './parse-query';
 import getSearch from './get-search';
 
 /**
@@ -8,5 +8,5 @@ import getSearch from './get-search';
  * @returns {object} 参数对象
  */
 export default function getSearchParams(url = window.location.href) {
-  return getParams(getSearch(url));
+  return parseQuery(getSearch(url));
 }
