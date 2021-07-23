@@ -64,12 +64,19 @@ import stripTags from './string/strip-tags';
 import underscored from './string/underscored';
 import xssFilter from './string/xxs-filter';
 
-import getHashParams from './url/get-hash-params';
 import getHashParam from './url/get-hash-param';
-import getSearchParams from './url/get-search-params';
+import getHashParams from './url/get-hash-params';
 import getSearchParam from './url/get-search-param';
+import getSearchParams from './url/get-search-params';
+import removeHash from './url/remove-hash';
+import getHash from './url/get-hash';
+import getSearch from './url/get-search';
+import omitParams from './url/omit-params';
+import pickParams from './url/pick-params';
 import parseQuery from './url/parse-query';
 import stringifyQuery from './url/stringify-query';
+import parseUrl from './url/parse-url';
+import stringifyUrl from './url/stringify-url';
 
 export {
   // array
@@ -139,12 +146,19 @@ export {
   underscored,
   xssFilter,
   // url
-  getHashParams,
   getHashParam,
-  getSearchParams,
+  getHashParams,
   getSearchParam,
+  getSearchParams,
+  removeHash,
+  getHash,
+  getSearch,
+  omitParams,
+  pickParams,
   parseQuery,
   stringifyQuery,
+  parseUrl,
+  stringifyUrl,
 };
 
 const tars = {
@@ -215,12 +229,19 @@ const tars = {
   underscored,
   xssFilter,
   // url
-  getHashParams,
   getHashParam,
-  getSearchParams,
+  getHashParams,
   getSearchParam,
+  getSearchParams,
+  removeHash,
+  getHash,
+  getSearch,
+  omitParams,
+  pickParams,
   parseQuery,
   stringifyQuery,
+  parseUrl,
+  stringifyUrl,
 };
 
 export default tars;
