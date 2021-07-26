@@ -5,7 +5,7 @@
  * @returns {string} 去除哈希后的链接
  */
 export default function removeHash(url) {
-  let res;
+  let res = url;
   const hashStart = url.indexOf('#');
   if (hashStart !== -1) {
     res = url.slice(0, hashStart);
