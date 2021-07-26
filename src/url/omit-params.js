@@ -1,6 +1,6 @@
 import parseUrl from './parse-url';
 import stringifyUrl from './stringify-url';
-import omit from '../utils/omit';
+import omit from '../object/omit';
 
 /**
  * 移除URL的某些参数
