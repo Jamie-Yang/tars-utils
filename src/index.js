@@ -78,7 +78,7 @@ import stringifyQuery from './url/stringify-query';
 import parseUrl from './url/parse-url';
 import stringifyUrl from './url/stringify-url';
 
-export const tars = {
+export {
   // array
   chunk,
   // browser
@@ -161,4 +161,85 @@ export const tars = {
   stringifyUrl,
 };
 
-export default tars;
+export default {
+  // array
+  chunk,
+  // browser
+  requestAnimFrame,
+  cancelAnimFrame,
+  // device
+  isAndroid,
+  isIOS,
+  isIPad,
+  isIPhone,
+  isNotchIPhone,
+  isWeixin,
+  ua,
+  // dom
+  getPageHeight,
+  getPageWidth,
+  getPageScrollTop,
+  getStyle,
+  getViewHeight,
+  getViewWidth,
+  isElementVisible,
+  lockTouch,
+  outlineElements,
+  putCursorAtEnd,
+  scrollTo,
+  setStyle,
+  // format
+  formatAmount,
+  formatBankCard,
+  formatDate,
+  formatRemainTime,
+  formatTel,
+  // function
+  compose,
+  debounce,
+  throttle,
+  // image
+  optimizeImage,
+  // lang
+  getType,
+  isArray,
+  isBoolean,
+  isEmpty,
+  isFunction,
+  isMap,
+  isNumber,
+  isObject,
+  isSet,
+  isString,
+  // object
+  extend,
+  merge,
+  omit,
+  pick,
+  // random
+  randomA2B,
+  randomColor,
+  randomString,
+  uuid,
+  // string
+  camelize,
+  dasherize,
+  getBase64Size,
+  stripTags,
+  underscored,
+  xssFilter,
+  // url
+  getHashParam,
+  getHashParams,
+  getSearchParam,
+  getSearchParams,
+  removeHash,
+  getHash,
+  getSearch,
+  omitParams,
+  pickParams,
+  parseQuery,
+  stringifyQuery,
+  parseUrl,
+  stringifyUrl,
+};
