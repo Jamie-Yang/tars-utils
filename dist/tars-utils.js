@@ -1503,7 +1503,7 @@
     }));
   }
 
-  var tars = {
+  var index = {
     // array
     chunk: chunk,
     // browser
@@ -1586,8 +1586,75 @@
     stringifyUrl: stringifyUrl
   };
 
-  exports.default = tars;
-  exports.tars = tars;
+  exports.camelize = camelize;
+  exports.cancelAnimFrame = cancelAnimFrame;
+  exports.chunk = chunk;
+  exports.compose = compose;
+  exports.dasherize = dasherize;
+  exports.debounce = debounce;
+  exports.default = index;
+  exports.extend = extend;
+  exports.formatAmount = formatAmount;
+  exports.formatBankCard = formatBankCard;
+  exports.formatDate = formatDate;
+  exports.formatRemainTime = formatRemainTime;
+  exports.formatTel = formatTel;
+  exports.getBase64Size = getBase64Size;
+  exports.getHash = getHash;
+  exports.getHashParam = getHashParam;
+  exports.getHashParams = getHashParams;
+  exports.getPageHeight = getPageHeight;
+  exports.getPageScrollTop = getPageScrollTop;
+  exports.getPageWidth = getPageWidth;
+  exports.getSearch = getSearch;
+  exports.getSearchParam = getSearchParam;
+  exports.getSearchParams = getSearchParams;
+  exports.getStyle = getStyle;
+  exports.getType = getType;
+  exports.getViewHeight = getViewHeight;
+  exports.getViewWidth = getViewWidth;
+  exports.isAndroid = isAndroid;
+  exports.isArray = isArray;
+  exports.isBoolean = isBoolean;
+  exports.isElementVisible = elementIsVisibleInViewport;
+  exports.isEmpty = isEmpty;
+  exports.isFunction = isFunction;
+  exports.isIOS = isIOS;
+  exports.isIPad = isIPad;
+  exports.isIPhone = isIPhone;
+  exports.isMap = isMap;
+  exports.isNotchIPhone = isNotchIPhone;
+  exports.isNumber = isNumber;
+  exports.isObject = isObject;
+  exports.isSet = isSet;
+  exports.isString = isString;
+  exports.isWeixin = isWeixin;
+  exports.lockTouch = lockTouch;
+  exports.merge = merge;
+  exports.omit = omit;
+  exports.omitParams = omitParams;
+  exports.optimizeImage = optimizeImage;
+  exports.outlineElements = outlineElements;
+  exports.parseQuery = parseQuery;
+  exports.parseUrl = parseUrl;
+  exports.pick = pick;
+  exports.pickParams = pickParams;
+  exports.putCursorAtEnd = putCursorAtEnd;
+  exports.randomA2B = randomA2B;
+  exports.randomColor = randomColor;
+  exports.randomString = randomString;
+  exports.removeHash = removeHash;
+  exports.requestAnimFrame = requestAnimFrame;
+  exports.scrollTo = scrollTo;
+  exports.setStyle = setStyle;
+  exports.stringifyQuery = stringifyQuery;
+  exports.stringifyUrl = stringifyUrl;
+  exports.stripTags = stripTags;
+  exports.throttle = throttle;
+  exports.ua = ua;
+  exports.underscored = underscored;
+  exports.uuid = uuid;
+  exports.xssFilter = xssFilter;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
