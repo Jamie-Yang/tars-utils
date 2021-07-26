@@ -20,14 +20,14 @@
    * @example
    * chunk([1, 2, 3, 4], 2) => [[1, 2], [3, 4]]
    */
-  var chunk = function chunk(arr) {
+  function chunk(arr) {
     var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
     return Array.from({
       length: Math.ceil(arr.length / size)
     }, function (_v, i) {
       return arr.slice(i * size, i * size + size);
     });
-  };
+  }
 
   /**
    * Polyfill for requestAnimationFrame
@@ -337,31 +337,34 @@
   /**
    * 平滑滚动
    *
-   * @param {Element|Window} el 滚动容器
-   * @param {number} from 起始量
-   * @param {number} to 终止量
-   * @param {number} duration 过渡时间
-   * @param {Function} endCallback 结束回调
+   * @param {object} options 配置项
+   * @param {Element|Window} [options.el] 滚动容器元素或window
+   * @param {number} [options.from] 起始位置
+   * @param {number} options.to 终止位置
+   * @param {number} [options.duration] 过渡时间
+   * @param {Function} [options.onEnd] 结束回调
    */
-  // eslint-disable-next-line max-params
-  function scrollTo(el) {
-    var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var to = arguments.length > 2 ? arguments[2] : undefined;
-    var duration = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 500;
-    var endCallback = arguments.length > 4 ? arguments[4] : undefined;
-
+  function scrollTo(options) {
     if (!window.requestAnimationFrame) {
       window.requestAnimationFrame = window.webkitRequestAnimationFrame || function (callback) {
         window.setTimeout(callback, 1000 / 60);
       };
     }
 
+    var _options$el = options.el,
+        el = _options$el === void 0 ? window : _options$el,
+        _options$from = options.from,
+        from = _options$from === void 0 ? 0 : _options$from,
+        to = options.to,
+        _options$duration = options.duration,
+        duration = _options$duration === void 0 ? 500 : _options$duration,
+        onEnd = options.onEnd;
     var difference = Math.abs(from - to);
     var step = Math.ceil(difference / duration * 50);
 
     var scroll = function scroll(start, end, step) {
       if (start === end) {
-        endCallback && endCallback();
+        onEnd && onEnd();
         return;
       }
 
@@ -372,7 +375,7 @@
       }
 
       if (el === window) {
-        window.scrollTo(d, d);
+        window.scrollTo(0, d);
       } else {
         el.scrollTop = d;
       }
@@ -624,10 +627,10 @@
    * @param {*} val 数据
    * @returns {string} 类型名 object，array，string，boolean，number，map，set，function, undefined
    */
-  var getType = function getType(val) {
+  function getType(val) {
     return Object.prototype.toString.call(val).slice(8, -1) // [object XXX]
     .toLowerCase();
-  };
+  }
 
   /**
    * 检查数据类型是否为：对象
@@ -1294,14 +1297,15 @@
   }
 
   /**
-   * 获取URL参数对象
+   * 解析 URL 查询参数字符串为对象
    *
-   * @param {string} [query] 参数字段
-   * @returns {object} 参数对象
+   * @param {string} qs 查询参数字符串
+   * @returns {object} 查询参数对象
    */
-  function getParams(query) {
-    return (query.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(function (a, v) {
-      a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1);
+  function parseQuery(qs) {
+    return (qs.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(function (a, v) {
+      var pair = v.split('=');
+      a[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
       return a;
     }, {});
   }
@@ -1322,8 +1326,6 @@
 
     return hash;
   }
-  var a = 'https://www.baidu.com/path?a=1&b=2#/?c=3';
-  console.log(getHash(a));
 
   /**
    * 获取 URL hash 参数对象
@@ -1334,11 +1336,11 @@
 
   function getHashParams() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
-    return getParams(getHash(url));
+    return parseQuery(getHash(url));
   }
 
   /**
-   * 获取URL hash 指定的查询参数
+   * 获取 URL hash 指定的查询参数
    *
    * @param {string} key 参数名
    * @param {string} [url] 链接
@@ -1357,7 +1359,7 @@
    * @returns {string} 去除哈希后的链接
    */
   function removeHash(url) {
-    var res;
+    var res = url;
     var hashStart = url.indexOf('#');
 
     if (hashStart !== -1) {
@@ -1368,7 +1370,7 @@
   }
 
   /**
-   * 获得 URL 查询字符串
+   * 获得 URL 查询参数字符串
    *
    * @param {string} url 链接
    * @returns {string} 查询参数字符串
@@ -1395,7 +1397,7 @@
 
   function getSearchParams() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
-    return getParams(getSearch(url));
+    return parseQuery(getSearch(url));
   }
 
   /**
@@ -1412,68 +1414,93 @@
   }
 
   /**
-   * url参数转对象
+   * 解析 URL 字符串
    *
-   * @param  {string} [url] default: window.location.href
-   * @returns {object} 结果对象
+   * @param {string} url URL 字符串
+   * @returns {object} 解析结果对象
    */
-  function parseQuery() {
-    var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
 
-    if (url.indexOf('?') === -1) {
-      return {};
-    }
-
-    var search = url[0] === '?' ? url.substr(1) : url.substring(url.lastIndexOf('?') + 1);
-
-    if (search === '') {
-      return {};
-    }
-
-    search = search.split('&');
-    var query = {};
-
-    for (var i = 0; i < search.length; i++) {
-      var pair = search[i].split('=');
-      query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
-    }
-
-    return query;
+  function parseUrl(url) {
+    var _url = removeHash(url).split('?')[0];
+    var query = getSearchParams(url);
+    var hash = getHash(url);
+    return {
+      url: _url,
+      query: query,
+      hash: hash
+    };
   }
 
   /**
-   * 对象序列化
+   * 查询参数对象序列化
    * 支持一层对象
    *
-   * @param {JSON} obj JSON对象
-   * @returns {string} 序列化查询参数串
+   * @param {JSON} obj 查询参数对象，JSON 子集，不支持数组类型
+   * @returns {string} 查询参数序列化后的字符串
    */
   function stringifyQuery(obj) {
     if (!obj) return '';
     var pairs = [];
 
-    var _loop = function _loop(key) {
-      if ({}.hasOwnProperty.call(obj, key)) {
-        var value = obj[key];
-
-        if (value instanceof Array) {
-          pairs = pairs.concat(value.map(function (v, i) {
-            return "".concat(encodeURIComponent(key), "[").concat(i, "]=").concat(encodeURIComponent(v));
-          }));
-          return "continue";
-        }
-
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
         pairs.push("".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(obj[key])));
       }
-    };
-
-    for (var key in obj) {
-      var _ret = _loop(key);
-
-      if (_ret === "continue") continue;
     }
 
     return pairs.join('&');
+  }
+
+  /**
+   * URL解析对象序列化
+   *
+   * @param {object} obj URL 解析对象
+   * @returns {string} URL 字符串
+   */
+
+  function stringifyUrl(obj) {
+    var _hash;
+
+    var url = obj.url,
+        query = obj.query,
+        hash = obj.hash;
+    url = removeHash(url).split('?')[0];
+    var queryFromUrl = getSearchParams(url);
+    var queryString = stringifyQuery(_objectSpread2(_objectSpread2({}, queryFromUrl), query));
+    var search = queryString ? "?".concat(queryString) : '';
+    var hashFromURL = getHash(url);
+    hash = (_hash = hash) !== null && _hash !== void 0 ? _hash : hashFromURL;
+    return "".concat(url).concat(search).concat(hash);
+  }
+
+  /**
+   * 移除URL的某些参数
+   *
+   * @param {string} url URL
+   * @param {Array} params 需要移除的参数列表
+   * @returns {string} 移除参数后的URL
+   */
+
+  function omitParams(url, params) {
+    var parsedUrl = parseUrl(url);
+    var query = omit(parsedUrl.query, params);
+    return stringifyUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
+      query: query
+    }));
+  }
+
+  /**
+   * @param {string} url URL
+   * @param {Array} params 需要的参数列表
+   * @returns {string} 仅保留需要参数的 URL
+   */
+
+  function pickParams(url, params) {
+    var parsedUrl = parseUrl(url);
+    var query = pick(parsedUrl.query, params);
+    return stringifyUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
+      query: query
+    }));
   }
 
   var tars = {
@@ -1544,76 +1571,23 @@
     underscored: underscored,
     xssFilter: xssFilter,
     // url
-    getHashParams: getHashParams,
     getHashParam: getHashParam,
-    getSearchParams: getSearchParams,
+    getHashParams: getHashParams,
     getSearchParam: getSearchParam,
+    getSearchParams: getSearchParams,
+    removeHash: removeHash,
+    getHash: getHash,
+    getSearch: getSearch,
+    omitParams: omitParams,
+    pickParams: pickParams,
     parseQuery: parseQuery,
-    stringifyQuery: stringifyQuery
+    stringifyQuery: stringifyQuery,
+    parseUrl: parseUrl,
+    stringifyUrl: stringifyUrl
   };
 
-  exports.camelize = camelize;
-  exports.cancelAnimFrame = cancelAnimFrame;
-  exports.chunk = chunk;
-  exports.compose = compose;
-  exports.dasherize = dasherize;
-  exports.debounce = debounce;
   exports.default = tars;
-  exports.extend = extend;
-  exports.formatAmount = formatAmount;
-  exports.formatBankCard = formatBankCard;
-  exports.formatDate = formatDate;
-  exports.formatRemainTime = formatRemainTime;
-  exports.formatTel = formatTel;
-  exports.getBase64Size = getBase64Size;
-  exports.getHashParam = getHashParam;
-  exports.getHashParams = getHashParams;
-  exports.getPageHeight = getPageHeight;
-  exports.getPageScrollTop = getPageScrollTop;
-  exports.getPageWidth = getPageWidth;
-  exports.getSearchParam = getSearchParam;
-  exports.getSearchParams = getSearchParams;
-  exports.getStyle = getStyle;
-  exports.getType = getType;
-  exports.getViewHeight = getViewHeight;
-  exports.getViewWidth = getViewWidth;
-  exports.isAndroid = isAndroid;
-  exports.isArray = isArray;
-  exports.isBoolean = isBoolean;
-  exports.isElementVisible = elementIsVisibleInViewport;
-  exports.isEmpty = isEmpty;
-  exports.isFunction = isFunction;
-  exports.isIOS = isIOS;
-  exports.isIPad = isIPad;
-  exports.isIPhone = isIPhone;
-  exports.isMap = isMap;
-  exports.isNotchIPhone = isNotchIPhone;
-  exports.isNumber = isNumber;
-  exports.isObject = isObject;
-  exports.isSet = isSet;
-  exports.isString = isString;
-  exports.isWeixin = isWeixin;
-  exports.lockTouch = lockTouch;
-  exports.merge = merge;
-  exports.omit = omit;
-  exports.optimizeImage = optimizeImage;
-  exports.outlineElements = outlineElements;
-  exports.parseQuery = parseQuery;
-  exports.pick = pick;
-  exports.putCursorAtEnd = putCursorAtEnd;
-  exports.randomA2B = randomA2B;
-  exports.randomColor = randomColor;
-  exports.randomString = randomString;
-  exports.requestAnimFrame = requestAnimFrame;
-  exports.scrollTo = scrollTo;
-  exports.setStyle = setStyle;
-  exports.stringifyQuery = stringifyQuery;
-  exports.stripTags = stripTags;
-  exports.throttle = throttle;
-  exports.ua = ua;
-  exports.underscored = underscored;
-  exports.uuid = uuid;
-  exports.xssFilter = xssFilter;
+  exports.tars = tars;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
