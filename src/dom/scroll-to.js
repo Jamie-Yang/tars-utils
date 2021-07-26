@@ -1,14 +1,14 @@
 /**
  * 平滑滚动
  *
- * @param {Element|Window} el 滚动容器
- * @param {number} from 起始量
- * @param {number} to 终止量
- * @param {number} duration 过渡时间
- * @param {Function} endCallback 结束回调
+ * @param {object} options 配置项
+ * @param {Element|Window} [options.el] 滚动容器元素或window
+ * @param {number} [options.from] 起始位置
+ * @param {number} options.to 终止位置
+ * @param {number} [options.duration] 过渡时间
+ * @param {Function} [options.onEnd] 结束回调
  */
-// eslint-disable-next-line max-params
-export default function scrollTo(el, from = 0, to, duration = 500, endCallback) {
+export default function scrollTo(options) {
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame =
       window.webkitRequestAnimationFrame ||
@@ -16,12 +16,14 @@ export default function scrollTo(el, from = 0, to, duration = 500, endCallback) 
         window.setTimeout(callback, 1000 / 60);
       });
   }
+
+  const { el = window, from = 0, to, duration = 500, onEnd } = options;
   const difference = Math.abs(from - to);
   const step = Math.ceil((difference / duration) * 50);
 
   const scroll = (start, end, step) => {
     if (start === end) {
-      endCallback && endCallback();
+      onEnd && onEnd();
       return;
     }
 
@@ -31,11 +33,13 @@ export default function scrollTo(el, from = 0, to, duration = 500, endCallback) 
     }
 
     if (el === window) {
-      window.scrollTo(d, d);
+      window.scrollTo(0, d);
     } else {
       el.scrollTop = d;
     }
+
     window.requestAnimationFrame(() => scroll(d, end, step));
   };
+
   scroll(from, to, step);
 }
