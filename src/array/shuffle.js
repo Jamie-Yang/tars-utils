@@ -4,7 +4,7 @@
  * @param {Array} arr 数组
  * @returns {Array} 经过随机乱序后的数组
  */
-const shuffle = (arr = []) => {
+export default function shuffle(arr = []) {
   let cursor = arr.length;
 
   while (--cursor) {
@@ -13,6 +13,4 @@ const shuffle = (arr = []) => {
   }
 
   return arr;
-};
-
-export default shuffle;
+}
