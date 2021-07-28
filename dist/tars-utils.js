@@ -1143,7 +1143,7 @@
 
     return [].concat(objects).reduce(function (acc, obj) {
       return Object.keys(obj).reduce(function (_a, k) {
-        acc[k] = acc.hasOwnProperty(k) ? [].concat(acc[k]).concat(obj[k]) : obj[k];
+        acc[k] = {}.hasOwnProperty.call(acc, k) ? [].concat(acc[k]).concat(obj[k]) : obj[k];
         return acc;
       }, {});
     }, {});
@@ -1313,10 +1313,11 @@
   /**
    * 获得 URL 哈希字符串
    *
-   * @param {string} url 链接
+   * @param {string} [url] 链接
    * @returns {string} 哈希字符串
    */
-  function getHash(url) {
+  function getHash() {
+    var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
     var hash = '';
     var hashStart = url.indexOf('#');
 
@@ -1358,7 +1359,8 @@
    * @param {string} url 链接
    * @returns {string} 去除哈希后的链接
    */
-  function removeHash(url) {
+  function removeHash() {
+    var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
     var res = url;
     var hashStart = url.indexOf('#');
 
@@ -1372,11 +1374,13 @@
   /**
    * 获得 URL 查询参数字符串
    *
-   * @param {string} url 链接
+   * @param {string} [url] 链接
    * @returns {string} 查询参数字符串
    */
 
-  function getSearch(url) {
+  function getSearch() {
+    var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
+
     var _url = removeHash(url);
 
     var queryStart = _url.indexOf('?');
@@ -1420,7 +1424,8 @@
    * @returns {object} 解析结果对象
    */
 
-  function parseUrl(url) {
+  function parseUrl() {
+    var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
     var _url = removeHash(url).split('?')[0];
     var query = getSearchParams(url);
     var hash = getHash(url);
@@ -1443,7 +1448,7 @@
     var pairs = [];
 
     for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if ({}.hasOwnProperty.call(obj, key)) {
         pairs.push("".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(obj[key])));
       }
     }
@@ -1454,16 +1459,16 @@
   /**
    * URL解析对象序列化
    *
-   * @param {object} obj URL 解析对象
+   * @param {object} object URL 解析对象
    * @returns {string} URL 字符串
    */
 
-  function stringifyUrl(obj) {
+  function stringifyUrl(object) {
     var _hash;
 
-    var url = obj.url,
-        query = obj.query,
-        hash = obj.hash;
+    var url = object.url,
+        query = object.query,
+        hash = object.hash;
     url = removeHash(url).split('?')[0];
     var queryFromUrl = getSearchParams(url);
     var queryString = stringifyQuery(_objectSpread2(_objectSpread2({}, queryFromUrl), query));
@@ -1474,30 +1479,34 @@
   }
 
   /**
-   * 移除URL的某些参数
+   * 按需移除 URL 某些参数
    *
-   * @param {string} url URL
-   * @param {Array} params 需要移除的参数列表
+   * @param {Array} keys 需要移除的参数列表
+   * @param {string} [url] URL
    * @returns {string} 移除参数后的URL
    */
 
-  function omitParams(url, params) {
+  function omitParams(keys) {
+    var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.href;
     var parsedUrl = parseUrl(url);
-    var query = omit(parsedUrl.query, params);
+    var query = omit(parsedUrl.query, keys);
     return stringifyUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
       query: query
     }));
   }
 
   /**
-   * @param {string} url URL
-   * @param {Array} params 需要的参数列表
+   * 按需保留 URL 某些参数
+   *
+   * @param {Array} keys 需要的参数列表
+   * @param {string} [url] URL
    * @returns {string} 仅保留需要参数的 URL
    */
 
-  function pickParams(url, params) {
+  function pickParams(keys) {
+    var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.href;
     var parsedUrl = parseUrl(url);
-    var query = pick(parsedUrl.query, params);
+    var query = pick(parsedUrl.query, keys);
     return stringifyUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
       query: query
     }));
