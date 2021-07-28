@@ -1,5 +1,5 @@
 import parseUrl from './parse-url';
-import stringifyUrl from './stringify-url';
+import createUrl from './create-url';
 import omit from '../object/omit';
 
 /**
@@ -12,5 +12,5 @@ import omit from '../object/omit';
 export default function omitParams(keys, url = window.location.href) {
   const parsedUrl = parseUrl(url);
   const query = omit(parsedUrl.query, keys);
-  return stringifyUrl({ ...parsedUrl, query });
+  return createUrl({ ...parsedUrl, query });
 }

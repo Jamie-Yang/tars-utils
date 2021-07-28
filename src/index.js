@@ -76,7 +76,7 @@ import pickParams from './url/pick-params';
 import parseQuery from './url/parse-query';
 import stringifyQuery from './url/stringify-query';
 import parseUrl from './url/parse-url';
-import stringifyUrl from './url/stringify-url';
+import createUrl from './url/create-url';
 
 export {
   // array
@@ -158,7 +158,7 @@ export {
   parseQuery,
   stringifyQuery,
   parseUrl,
-  stringifyUrl,
+  createUrl,
 };
 
 export default {
@@ -241,5 +241,5 @@ export default {
   parseQuery,
   stringifyQuery,
   parseUrl,
-  stringifyUrl,
+  createUrl,
 };
