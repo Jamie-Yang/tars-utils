@@ -10,7 +10,7 @@ export default function merge(...objects) {
   return [...objects].reduce(
     (acc, obj) =>
       Object.keys(obj).reduce((_a, k) => {
-        acc[k] = acc.hasOwnProperty(k) ? [].concat(acc[k]).concat(obj[k]) : obj[k];
+        acc[k] = {}.hasOwnProperty.call(acc, k) ? [].concat(acc[k]).concat(obj[k]) : obj[k];
         return acc;
       }, {}),
     {}

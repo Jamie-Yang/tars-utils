@@ -10,7 +10,7 @@ export default function stringifyQuery(obj) {
   let pairs = [];
 
   for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if ({}.hasOwnProperty.call(obj, key)) {
       pairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
     }
   }
