@@ -1356,7 +1356,7 @@
   /**
    * 去除 URL 哈希字符串
    *
-   * @param {string} url 链接
+   * @param {string} [url] 链接
    * @returns {string} 去除哈希后的链接
    */
   function removeHash() {
@@ -1440,16 +1440,16 @@
    * 查询参数对象序列化
    * 支持一层对象
    *
-   * @param {JSON} obj 查询参数对象，JSON 子集，不支持数组类型
+   * @param {JSON} query 查询参数对象，JSON 子集，不支持数组类型
    * @returns {string} 查询参数序列化后的字符串
    */
-  function stringifyQuery(obj) {
-    if (!obj) return '';
+  function stringifyQuery(query) {
+    if (!query) return '';
     var pairs = [];
 
-    for (var key in obj) {
-      if ({}.hasOwnProperty.call(obj, key)) {
-        pairs.push("".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(obj[key])));
+    for (var key in query) {
+      if ({}.hasOwnProperty.call(query, key)) {
+        pairs.push("".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(query[key])));
       }
     }
 
@@ -1463,7 +1463,7 @@
    * @returns {string} URL 字符串
    */
 
-  function stringifyUrl(object) {
+  function createUrl(object) {
     var _hash;
 
     var url = object.url,
@@ -1490,7 +1490,7 @@
     var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.href;
     var parsedUrl = parseUrl(url);
     var query = omit(parsedUrl.query, keys);
-    return stringifyUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
+    return createUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
       query: query
     }));
   }
@@ -1507,7 +1507,7 @@
     var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.href;
     var parsedUrl = parseUrl(url);
     var query = pick(parsedUrl.query, keys);
-    return stringifyUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
+    return createUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
       query: query
     }));
   }
@@ -1592,13 +1592,14 @@
     parseQuery: parseQuery,
     stringifyQuery: stringifyQuery,
     parseUrl: parseUrl,
-    stringifyUrl: stringifyUrl
+    createUrl: createUrl
   };
 
   exports.camelize = camelize;
   exports.cancelAnimFrame = cancelAnimFrame;
   exports.chunk = chunk;
   exports.compose = compose;
+  exports.createUrl = createUrl;
   exports.dasherize = dasherize;
   exports.debounce = debounce;
   exports.default = index;
@@ -1657,7 +1658,6 @@
   exports.scrollTo = scrollTo;
   exports.setStyle = setStyle;
   exports.stringifyQuery = stringifyQuery;
-  exports.stringifyUrl = stringifyUrl;
   exports.stripTags = stripTags;
   exports.throttle = throttle;
   exports.ua = ua;
