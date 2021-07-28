@@ -3,12 +3,14 @@ import stringifyUrl from './stringify-url';
 import pick from '../object/pick';
 
 /**
- * @param {string} url URL
- * @param {Array} params 需要的参数列表
+ * 按需保留 URL 某些参数
+ *
+ * @param {Array} keys 需要的参数列表
+ * @param {string} [url] URL
  * @returns {string} 仅保留需要参数的 URL
  */
-export default function pickParams(url, params) {
+export default function pickParams(keys, url = window.location.href) {
   const parsedUrl = parseUrl(url);
-  const query = pick(parsedUrl.query, params);
+  const query = pick(parsedUrl.query, keys);
   return stringifyUrl({ ...parsedUrl, query });
 }

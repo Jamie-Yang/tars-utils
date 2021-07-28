@@ -8,7 +8,7 @@ import removeHash from './remove-hash';
  * @param {string} url URL 字符串
  * @returns {object} 解析结果对象
  */
-export default function parseUrl(url) {
+export default function parseUrl(url = window.location.href) {
   const _url = removeHash(url).split('?')[0];
   const query = getSearchParams(url);
   const hash = getHash(url);

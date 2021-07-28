@@ -6,11 +6,11 @@ import getHash from './get-hash';
 /**
  * URL解析对象序列化
  *
- * @param {object} obj URL 解析对象
+ * @param {object} object URL 解析对象
  * @returns {string} URL 字符串
  */
-export default function stringifyUrl(obj) {
-  let { url, query, hash } = obj;
+export default function stringifyUrl(object) {
+  let { url, query, hash } = object;
 
   url = removeHash(url).split('?')[0];
 
