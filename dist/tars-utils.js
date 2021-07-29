@@ -1318,14 +1318,13 @@
    */
   function getHash() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
-    var hash = '';
     var hashStart = url.indexOf('#');
 
-    if (hashStart !== -1) {
-      hash = url.slice(hashStart);
+    if (hashStart === -1) {
+      return '';
     }
 
-    return hash;
+    return url.slice(hashStart);
   }
 
   /**
@@ -1361,14 +1360,13 @@
    */
   function removeHash() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
-    var res = url;
     var hashStart = url.indexOf('#');
 
-    if (hashStart !== -1) {
-      res = url.slice(0, hashStart);
+    if (hashStart === -1) {
+      return url;
     }
 
-    return res;
+    return url.slice(0, hashStart);
   }
 
   /**
@@ -1389,11 +1387,11 @@
       return '';
     }
 
-    return _url.slice(queryStart + 1);
+    return _url.slice(queryStart);
   }
 
   /**
-   * 获取URL search 参数对象
+   * 获取 URL search 参数对象
    *
    * @param {string} [url] 链接
    * @returns {object} 参数对象
@@ -1405,7 +1403,7 @@
   }
 
   /**
-   * 获取URL search 指定的查询参数
+   * 获取 URL search 指定的查询参数
    *
    * @param {string} key 参数名
    * @param {string} [url] 链接
@@ -1463,7 +1461,7 @@
    * @returns {string} URL 字符串
    */
 
-  function createUrl(object) {
+  function makeUrl(object) {
     var _hash;
 
     var url = object.url,
@@ -1490,7 +1488,7 @@
     var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.href;
     var parsedUrl = parseUrl(url);
     var query = omit(parsedUrl.query, keys);
-    return createUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
+    return makeUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
       query: query
     }));
   }
@@ -1507,7 +1505,7 @@
     var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.href;
     var parsedUrl = parseUrl(url);
     var query = pick(parsedUrl.query, keys);
-    return createUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
+    return makeUrl(_objectSpread2(_objectSpread2({}, parsedUrl), {}, {
       query: query
     }));
   }
@@ -1592,14 +1590,13 @@
     parseQuery: parseQuery,
     stringifyQuery: stringifyQuery,
     parseUrl: parseUrl,
-    createUrl: createUrl
+    makeUrl: makeUrl
   };
 
   exports.camelize = camelize;
   exports.cancelAnimFrame = cancelAnimFrame;
   exports.chunk = chunk;
   exports.compose = compose;
-  exports.createUrl = createUrl;
   exports.dasherize = dasherize;
   exports.debounce = debounce;
   exports.default = index;
@@ -1640,6 +1637,7 @@
   exports.isString = isString;
   exports.isWeixin = isWeixin;
   exports.lockTouch = lockTouch;
+  exports.makeUrl = makeUrl;
   exports.merge = merge;
   exports.omit = omit;
   exports.omitParams = omitParams;
