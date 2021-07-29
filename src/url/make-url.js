@@ -9,7 +9,7 @@ import getHash from './get-hash';
  * @param {object} object URL 解析对象
  * @returns {string} URL 字符串
  */
-export default function createUrl(object) {
+export default function makeUrl(object) {
   let { url, query, hash } = object;
 
   url = removeHash(url).split('?')[0];

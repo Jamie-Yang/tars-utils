@@ -1,5 +1,5 @@
 import parseUrl from './parse-url';
-import createUrl from './create-url';
+import makeUrl from './make-url';
 import pick from '../object/pick';
 
 /**
@@ -12,5 +12,5 @@ import pick from '../object/pick';
 export default function pickParams(keys, url = window.location.href) {
   const parsedUrl = parseUrl(url);
   const query = pick(parsedUrl.query, keys);
-  return createUrl({ ...parsedUrl, query });
+  return makeUrl({ ...parsedUrl, query });
 }
