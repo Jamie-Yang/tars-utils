@@ -5,10 +5,9 @@
  * @returns {string} 哈希字符串
  */
 export default function getHash(url = window.location.href) {
-  let hash = '';
   const hashStart = url.indexOf('#');
-  if (hashStart !== -1) {
-    hash = url.slice(hashStart);
+  if (hashStart === -1) {
+    return '';
   }
-  return hash;
+  return url.slice(hashStart);
 }

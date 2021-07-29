@@ -12,5 +12,5 @@ export default function getSearch(url = window.location.href) {
   if (queryStart === -1) {
     return '';
   }
-  return _url.slice(queryStart + 1);
+  return _url.slice(queryStart);
 }
