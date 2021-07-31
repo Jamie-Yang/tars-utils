@@ -2,7 +2,7 @@ import parseUrl from './parse-url';
 import stringifyQuery from './stringify-query';
 
 /**
- * 修改 URL 参数，没有则新增
+ * 修改 URL 参数，无则新增
  *
  * @param {object} query 参数对象
  * @param {string} [url] URL
