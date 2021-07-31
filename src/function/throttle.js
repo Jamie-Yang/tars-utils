@@ -1,4 +1,4 @@
-import isObject from '../lang/is-object';
+import isObject from '../type/is-object';
 import debounce from './debounce';
 
 /**

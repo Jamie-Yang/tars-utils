@@ -1,4 +1,4 @@
-import isObject from '../lang/is-object';
+import isObject from '../type/is-object';
 
 /**
  * Creates a debounced function that delays invoking `func` until after `wait`

@@ -36,16 +36,16 @@ import throttle from './function/throttle';
 
 import optimizeImage from './image/optimize-image';
 
-import getType from './lang/get-type';
-import isArray from './lang/is-array';
-import isBoolean from './lang/is-boolean';
-import isEmpty from './lang/is-empty';
-import isFunction from './lang/is-function';
-import isMap from './lang/is-map';
-import isNumber from './lang/is-number';
-import isObject from './lang/is-object';
-import isSet from './lang/is-set';
-import isString from './lang/is-string';
+import getType from './type/get-type';
+import isArray from './type/is-array';
+import isBoolean from './type/is-boolean';
+import isEmpty from './type/is-empty';
+import isFunction from './type/is-function';
+import isMap from './type/is-map';
+import isNumber from './type/is-number';
+import isObject from './type/is-object';
+import isSet from './type/is-set';
+import isString from './type/is-string';
 
 import extend from './object/extend';
 import merge from './object/merge';
