@@ -1297,7 +1297,7 @@
   }
 
   /**
-   * 解析 URL 查询参数字符串为对象
+   * 解析查询参数字符串为对象
    *
    * @param {string} qs 查询参数字符串
    * @returns {object} 查询参数对象
@@ -1330,7 +1330,7 @@
   /**
    * 获取 URL hash 参数对象
    *
-   * @param {string} [url] 链接
+   * @param {string} [url] URL
    * @returns {object} 参数对象
    */
 
@@ -1340,11 +1340,11 @@
   }
 
   /**
-   * 获取 URL hash 指定的查询参数
+   * 获取 URL hash 指定的查询参数值
    *
    * @param {string} key 参数名
-   * @param {string} [url] 链接
-   * @returns {string} 指定参数的值
+   * @param {string} [url] URL
+   * @returns {string} 参数值
    */
 
   function getHashParam(key) {
@@ -1355,8 +1355,8 @@
   /**
    * 去除 URL 哈希字符串
    *
-   * @param {string} [url] 链接
-   * @returns {string} 去除哈希后的链接
+   * @param {string} [url] URL
+   * @returns {string} 去除哈希后的 URL
    */
   function removeHash() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.href;
@@ -1393,7 +1393,7 @@
   /**
    * 获取 URL search 参数对象
    *
-   * @param {string} [url] 链接
+   * @param {string} [url] URL
    * @returns {object} 参数对象
    */
 
@@ -1403,11 +1403,11 @@
   }
 
   /**
-   * 获取 URL search 指定的查询参数
+   * 获取 URL search 指定的查询参数值
    *
    * @param {string} key 参数名
-   * @param {string} [url] 链接
-   * @returns {string} 指定参数的值
+   * @param {string} [url] URL
+   * @returns {string} 参数值
    */
 
   function getSearchParam(key) {
@@ -1416,9 +1416,9 @@
   }
 
   /**
-   * 解析 URL 字符串
+   * 解析 URL 字符串为描述对象：{ url, query, hash }
    *
-   * @param {string} url URL 字符串
+   * @param {string} url URL
    * @returns {object} 解析结果对象
    */
 
@@ -1435,11 +1435,10 @@
   }
 
   /**
-   * 查询参数对象序列化
-   * 支持一层对象
+   * 查询参数对象转换为字符串
    *
    * @param {JSON} query 查询参数对象，JSON 子集，不支持数组类型
-   * @returns {string} 查询参数序列化后的字符串
+   * @returns {string} 查询参数字符串
    */
   function stringifyQuery(query) {
     if (!query) return '';
@@ -1455,17 +1454,21 @@
   }
 
   /**
-   * URL解析对象序列化
+   * 根据描述对象组合 URL，query 合并，hash 覆盖
    *
-   * @param {object} object URL 解析对象
-   * @returns {string} URL 字符串
+   * @param {object} object URL 描述对象
+   * @param {string} object.url 基础 URL
+   * @param {object} [object.query] 查询参数对象
+   * @param {string} [object.hash] 哈希字符串
+   * @returns {string} URL
    */
 
   function makeUrl(object) {
     var _hash;
 
     var url = object.url,
-        query = object.query,
+        _object$query = object.query,
+        query = _object$query === void 0 ? {} : _object$query,
         hash = object.hash;
     url = removeHash(url).split('?')[0];
     var queryFromUrl = getSearchParams(url);
@@ -1477,11 +1480,11 @@
   }
 
   /**
-   * 按需移除 URL 某些参数
+   * 移除 URL 指定参数
    *
-   * @param {Array} keys 需要移除的参数列表
+   * @param {Array} keys 参数列表
    * @param {string} [url] URL
-   * @returns {string} 移除参数后的URL
+   * @returns {string} 移除参数后的 URL
    */
 
   function omitParams(keys) {
@@ -1494,11 +1497,11 @@
   }
 
   /**
-   * 按需保留 URL 某些参数
+   * 保留 URL 指定参数
    *
-   * @param {Array} keys 需要的参数列表
+   * @param {Array} keys 参数列表
    * @param {string} [url] URL
-   * @returns {string} 仅保留需要参数的 URL
+   * @returns {string} 保留需要参数的 URL
    */
 
   function pickParams(keys) {
