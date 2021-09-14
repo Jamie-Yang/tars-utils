@@ -1,10 +1,17 @@
 /**
  * @param {object} config 配置对象
- * @param {Function} onSuccess 成功回调
- * @param {Function} onError 失败回调
+ * @param {Function} success 成功回调
+ * @param {Function} fail 失败回调
  */
-export default function xhr(config, onSuccess, onError) {
-  const { url, data, method = 'post', headers = {}, withCredentials } = config;
+export default function xhr(config, success = () => {}, fail = () => {}) {
+  const {
+    url,
+    data,
+    method = 'post',
+    headers = {},
+    responseType = 'json',
+    withCredentials,
+  } = config;
   const xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function () {
@@ -17,20 +24,30 @@ export default function xhr(config, onSuccess, onError) {
       try {
         res = JSON.parse(xhr.response);
       } catch (e) {}
-      onSuccess(res);
+      success(res);
     } else {
-      onError(new Error(xhr.status));
+      fail(new Error(xhr.status));
     }
   };
 
   xhr.onerror = function (e) {
-    onError(e);
+    fail(e);
   };
 
   xhr.open(method, url, true);
 
   if (withCredentials) {
     xhr.withCredentials = true;
+  }
+
+  switch (responseType) {
+    case 'json':
+      xhr.responseType = 'json';
+      xhr.setRequestHeader('Accept', 'application/json');
+      break;
+
+    default:
+      xhr.setRequestHeader('Accept', '*/*');
   }
 
   xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');

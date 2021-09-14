@@ -78,6 +78,9 @@ import stringifyQuery from './url/stringify-query';
 import parseUrl from './url/parse-url';
 import makeUrl from './url/make-url';
 
+import request from './http/request';
+import xhr from './http/xhr';
+
 export {
   // array
   chunk,
@@ -159,6 +162,9 @@ export {
   stringifyQuery,
   parseUrl,
   makeUrl,
+  // http
+  request,
+  xhr,
 };
 
 export default {
@@ -242,4 +248,7 @@ export default {
   stringifyQuery,
   parseUrl,
   makeUrl,
+  // http
+  request,
+  xhr,
 };
