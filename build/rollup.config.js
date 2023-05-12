@@ -1,7 +1,10 @@
-import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
+import { readFileSync } from 'node:fs';
+import { babel } from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
 
-import { name, version } from '../package.json';
+const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.meta.url)));
+
+const { name, version } = packageJson;
 
 let banner = `
 /*
@@ -11,7 +14,11 @@ let banner = `
  */
 `;
 
-let plugins = [babel()];
+let plugins = [
+  babel({
+    babelHelpers: 'bundled',
+  }),
+];
 
 export default [
   {
@@ -44,6 +51,7 @@ export default [
     ],
     plugins,
   },
+
   {
     input: 'src/index.js',
     output: {

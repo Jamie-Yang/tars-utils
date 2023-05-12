@@ -1,4 +1,4 @@
-import tars, { isAndroid } from '../dist_npm/tars-utils.esm';
+import tars, { isAndroid } from '../dist_npm/tars-utils.esm.js';
 
 console.log(isAndroid());
 const url = 'https://www.baidu.com/path?a=1&b=2#/?c=3';

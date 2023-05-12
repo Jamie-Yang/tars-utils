@@ -5,7 +5,7 @@
   "main": "tars-utils.js",
   "module": "tars-utils.esm.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --config ./build/webpack.config.js",
+    "dev": "webpack-dev-server --progress --config ./build/webpack.config.cjs",
     "test": "rollup -w -c ./build/rollup.config.js",
     "build": "rollup -c ./build/rollup.config.js",
     "lint": "npm run eslint && npm run prettier",
@@ -13,44 +13,40 @@
     "eslint:fix": "eslint --ext .js,.ts --fix .",
     "prettier": "prettier -l \"./**/*.{js,json}\"",
     "prettier:fix": "prettier --write -l \"./**/*.{js,json}\"",
-    "prepare-publish": "rm -rf dist_npm && mkdir dist_npm && cp package.json README.md ./dist_npm && npm run build"
+    "prepare-publish": "rm -rf dist_npm && mkdir dist_npm && cp package.json README.md ./dist_npm && npm run build",
+    "prepare": "husky install"
   },
   "author": "Jamie Yang",
   "license": "ISC",
   "repository": "https://github.com/Jamie-Yang/tars-utils.git",
+  "type": "module",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-alloy": "^3.6.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-jsdoc": "^22.1.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "html-webpack-plugin": "^4.0.4",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.1.1",
-    "prettier": "^2.0.2",
-    "rollup": "^1.32.1",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
-  },
-  "dependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
-    }
+    "@babel/core": "^7.21.8",
+    "@babel/eslint-parser": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-terser": "^0.4.1",
+    "eslint": "^8.40.0",
+    "eslint-config-alloy": "^5.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-jsdoc": "^44.2.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "globals": "^13.20.0",
+    "html-webpack-plugin": "^5.5.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "rollup": "^3.21.6",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
   },
   "lint-staged": {
-    "*.{js}": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
+    "*.js": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,js,html,md}": [
+      "prettier --write --ignore-unknown"
     ]
   }
 }
