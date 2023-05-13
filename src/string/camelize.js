@@ -1,6 +1,5 @@
 /**
  * 转换 _ 或 - 为驼峰形式
- *
  * @param {string} str 原始字符串
  * @returns {string} CamelCase 形式
  */

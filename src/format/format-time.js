@@ -1,6 +1,5 @@
 /**
  * 时间格式标记替换通用逻辑
- *
  * @param {object} time 时间对象：形式如defaults
  * @param {string} format 格式描述：YYYY-MM-DD HH:mm:ss.SSS 或 d天 HH:mm:ss.SSS
  * @returns {string} 2020-01-01 12:00:00.000 或 1天 12:00:00.00

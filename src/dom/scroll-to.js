@@ -1,6 +1,5 @@
 /**
  * 平滑滚动
- *
  * @param {object} options 配置项
  * @param {Element|Window} [options.el] 滚动容器元素或window
  * @param {number} [options.from] 起始位置

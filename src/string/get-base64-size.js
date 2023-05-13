@@ -1,6 +1,5 @@
 /**
  * 计算base64字符串大小
- *
  * @param {string} base64 base64
  * @returns {number} 返回KB数字
  */

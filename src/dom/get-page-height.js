@@ -3,7 +3,6 @@ const body = document.body;
 
 /**
  * 获取页面高度
- *
  * @returns {number} 页面高度
  */
 export default function getPageHeight() {

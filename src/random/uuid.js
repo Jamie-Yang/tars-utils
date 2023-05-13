@@ -1,6 +1,5 @@
 /**
  * 生成uuid
- *
  * @returns {string} uuid
  */
 export default function uuid() {

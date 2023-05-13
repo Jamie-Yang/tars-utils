@@ -1,7 +1,6 @@
 /**
  * 优化图片尺寸和文件大小
  * 不支持Gif格式
- *
  * @param {object|string} image 原始图片，支持File对象和base64字符串
  * @param {number} [quality] 品质，范围为 0 - 1, 仅支持MIME类型为 image/jpeg 或 image/webp
  * @param {object} [options={}] 配置项
@@ -23,9 +22,8 @@ export default function optimizeImage(image, quality = 0.9, { maxWidth = 750, mi
 
     /**
      * To Blob
-     *
      * @param {string} data - Image: Data URL
-     * @returns {Promise<Blob>} 生成图片 Blob对象
+     * @returns {undefined}
      */
     function toBlob(data) {
       const type = data.match(/data:([^;,]+)/);

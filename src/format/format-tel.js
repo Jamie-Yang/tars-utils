@@ -1,6 +1,5 @@
 /**
  * 手机号格式化，格式为344
- *
  * @param {string|number} tel 手机号码
  * @param {string} separator 分隔符，默认空格
  * @returns {string} 格式化结果

@@ -1,6 +1,5 @@
 /**
  * 生成随机Hex颜色值
- *
  * @returns {string} 随机Hex颜色值
  */
 export default function randomColor() {

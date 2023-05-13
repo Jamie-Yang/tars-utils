@@ -1,6 +1,5 @@
 /**
  * 检查数据是否为空：null、空对象、空数组
- *
  * @param {*} val 数据
  * @returns {boolean} 是否
  */

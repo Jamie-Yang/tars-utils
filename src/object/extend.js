@@ -1,6 +1,5 @@
 /**
  * 对象深复制
- *
  * @param {object} target 目标对象
  * @param {object} objects 对象
  * @returns {object} 复制的对象

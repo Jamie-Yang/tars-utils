@@ -1,6 +1,5 @@
 /**
  * 去除 URL 哈希字符串
- *
  * @param {string} [url] URL
  * @returns {string} 去除哈希后的 URL
  */

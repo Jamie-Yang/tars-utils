@@ -1,6 +1,5 @@
 /**
  * 解析查询参数字符串为对象
- *
  * @param {string} qs 查询参数字符串
  * @returns {object} 查询参数对象
  */

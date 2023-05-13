@@ -2,7 +2,6 @@ import formatTime from './format-time';
 
 /**
  * 剩余时间格式化（不支持年月，因其周期不固定）
- *
  * @param {number} remain 剩余毫秒数
  * @param {string} format 格式描述：d天 HH:mm:ss.SSS
  * @returns {string} 格式化结果：1天 12:00:00.00

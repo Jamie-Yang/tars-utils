@@ -1,6 +1,5 @@
 /**
  * 金额格式化，保留两位小数、千分位格式化 2333 -> 2,333.00
- *
  * @param {number} amount 金额
  * @returns {string} 格式化结果
  */

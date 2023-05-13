@@ -20,7 +20,6 @@ import debounce from './debounce';
  *
  * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
  * for details over the differences between `_.throttle` and `_.debounce`.
- *
  * @static
  * @since 0.1.0
  * @param {Function} func The function to throttle.

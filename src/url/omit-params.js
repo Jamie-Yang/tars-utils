@@ -4,7 +4,6 @@ import omit from '../object/omit';
 
 /**
  * 移除 URL 指定参数
- *
  * @param {Array} keys 参数列表
  * @param {string} [url] URL
  * @returns {string} 移除参数后的 URL

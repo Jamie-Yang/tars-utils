@@ -1,6 +1,5 @@
 /**
  * 生成随机字符串
- *
  * @param {number} [len] 长度
  * @returns {string} 随机字符串
  */

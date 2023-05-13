@@ -1,6 +1,5 @@
 /**
  * 将输入框光标定位在文端结尾处
- *
  * @param {Element} el 元素
  */
 export default function putCursorAtEnd(el) {

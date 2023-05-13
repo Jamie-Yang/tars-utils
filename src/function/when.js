@@ -1,6 +1,5 @@
 /**
  * 等待第三方条件满足后执行
- *
  * @param {Function} conditionFn 条件检查方法
  * @param {number} wait 等待间隙
  * @param {number} maxWait 最大等待时间

@@ -20,7 +20,6 @@ import isObject from '../type/is-object';
  *
  * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
  * for details over the differences between `_.debounce` and `_.throttle`.
- *
  * @static
  * @param {Function} func The function to debounce.
  * @param {number} [wait=0] The number of milliseconds to delay.
@@ -124,16 +123,11 @@ export default function debounce(func, wait, options) {
     // Either this is the first call, activity has stopped and we're at the
     // trailing edge, the system time has gone backwards and we're treating
     // it as the trailing edge, or we've hit the `maxWait` limit.
-    return (
-      lastCallTime === undefined ||
-      timeSinceLastCall >= wait ||
-      timeSinceLastCall < 0 ||
-      (maxing && timeSinceLastInvoke >= maxWait)
-    );
+    return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || (maxing && timeSinceLastInvoke >= maxWait);
   }
 
   /**
-   * @returns {number} 定时器ID
+   * @returns {undefined}
    */
   function timerExpired() {
     let time = Date.now();
@@ -173,7 +167,6 @@ export default function debounce(func, wait, options) {
 
   /**
    * 立即执行
-   *
    * @returns {*} 方法执行结果
    */
   function flush() {

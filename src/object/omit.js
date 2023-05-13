@@ -1,6 +1,5 @@
 /**
  * 移除对象的key，浅拷贝对象
- *
  * @param {object} obj 原始对象
  * @param {string[]} arr 需排除的key
  * @returns {object} 处理后的对象

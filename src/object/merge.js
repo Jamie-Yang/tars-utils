@@ -1,6 +1,5 @@
 /**
  * 对象深合并
- *
  * @param {...object} objects 对象
  * @returns {object} 合并后的对象
  * @example
@@ -10,7 +9,7 @@ export default function merge(...objects) {
   return [...objects].reduce(
     (acc, obj) =>
       Object.keys(obj).reduce((_a, k) => {
-        acc[k] = {}.hasOwnProperty.call(acc, k) ? [].concat(acc[k]).concat(obj[k]) : obj[k];
+        acc[k] = Object.hasOwn(acc, k) ? [].concat(acc[k]).concat(obj[k]) : obj[k];
         return acc;
       }, {}),
     {}

@@ -2,7 +2,6 @@ import isIPhone from './is-iphone';
 
 /**
  * 是否为iPhone刘海屏机型：X XS, XS Max, XR, 11, 11 Pro, 11 Pro Max
- *
  * @returns {boolean} 是否为微信客户端
  */
 export default function isNotchIPhone() {
@@ -18,9 +17,7 @@ export default function isNotchIPhone() {
   if (typeof window !== 'undefined' && window) {
     const { devicePixelRatio, screen } = window;
     const { width, height } = screen;
-    return screens.some(
-      (item) => item.dpr === devicePixelRatio && item.width === width && item.height === height
-    );
+    return screens.some((item) => item.dpr === devicePixelRatio && item.width === width && item.height === height);
   }
   return false;
 }

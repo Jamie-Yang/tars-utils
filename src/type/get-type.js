@@ -1,6 +1,5 @@
 /**
  * 获取数据类型
- *
  * @param {*} val 数据
  * @returns {string} 类型名 object，array，string，boolean，number，map，set，function, undefined
  */

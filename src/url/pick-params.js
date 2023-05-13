@@ -4,7 +4,6 @@ import pick from '../object/pick';
 
 /**
  * 保留 URL 指定参数
- *
  * @param {Array} keys 参数列表
  * @param {string} [url] URL
  * @returns {string} 保留需要参数的 URL

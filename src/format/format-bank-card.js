@@ -1,6 +1,5 @@
 /**
  * 银行卡格式化，格式为四位分割
- *
  * @param {string|number} bankCard 银行卡号
  * @param {string} separator 分隔符，默认空格
  * @returns {string} 格式化结果

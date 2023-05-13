@@ -1,6 +1,5 @@
 /**
  * 获取UA
- *
  * @param {any} lower 是否转小写
  * @returns {string} UA
  */

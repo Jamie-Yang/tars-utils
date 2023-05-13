@@ -1,6 +1,5 @@
 /**
  * 按指定范围生成随机数
- *
  * @param {number} a 最小值
  * @param {number} b 最大值
  * @param {boolean|string} [int] 是否生成整数
